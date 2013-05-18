@@ -1,0 +1,37 @@
+import tweepy
+import re
+
+consumer_key="UhHhP8ewLYIy2a6XJncw"
+consumer_secret="uJ0cXJemolaFDoqnKB9kBu52wM51IjmpAEQupLqtmc"
+
+access_token="537177590-EDRymdBrWOFPTBRwY5yBEWYzlgYWuUvJBPuSgUuQ"
+access_token_secret="IuSJCOcoNqQW9UUQ0VXOumNey5DhI6cHlKrK6VLk9Q"
+
+user_regex = re.compile("twitter\.com/([a-zA-Z0-9]+)")
+
+auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
+auth.set_access_token(access_token, access_token_secret)
+api = tweepy.API(auth)
+
+def parse(url):
+	user = user_regex.search(url)
+	user = api.get_user(user.group(1))
+	timeline = user.timeline()
+	
+	feed = {
+		'title': "%s's twitter" % user.screen_name,
+		'subtitle': user.location,
+		'link': url,
+		'articles': []
+	}
+	
+	for entry in timeline:
+		article = {
+			'title': entry.text,
+			'content': entry.text,
+			'author': entry.author.screen_name,
+			'link': '%s/status/%d' % (url, entry.id),
+			'date': entry.created_at
+		}
+		feed['articles'].append(article)
+	return feed
