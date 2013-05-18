@@ -1,3 +1,5 @@
+# coding=utf-8
+
 from pymongo import MongoClient
 from math import sqrt
 
@@ -140,14 +142,18 @@ class Recommend(object):
 		if category:
 			result = []
 			for a in self.db_articles.find({'category' : category}):
-				result.append(a['_id'])
+				if a['_id'] != articleid:
+					result.append(a['_id'])
 			return result
 		else:
 			return None
 
 	def recommend_for_article(self, title):
 		article = self.db_articles.find_one({'title' : title})
-		return self._recommend_for_article(article['_id'])
+		if article:
+			return self._recommend_for_article(article['_id'])
+		else:
+			return None
 
 if __name__ == '__main__':
 	recommend = Recommend()
