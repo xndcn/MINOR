@@ -3,7 +3,7 @@ from bson.objectid import ObjectId
 from background.FeedServer import FeedServer
 
 class User:
-	client = MongoClient('localhost', 27017)
+	client = MongoClient('10.101.158.66', 27017)
 	db = client.MINOR
 	db_user_feeds = db.UserFeeds
 	db_users = db.Users

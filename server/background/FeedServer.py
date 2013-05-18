@@ -1,13 +1,30 @@
 import datetime
 from pymongo import MongoClient
+import yql
 
 import os, re
 
 def enum(**enums):
-    return type('Enum', (), enums)
+	return type('Enum', (), enums)
+
+def find_category(string):
+	string = re.sub('[^A-Za-z0-9]+',' ',string)
+	query =  "select * from contentanalysis.analyze where text='%s';" % string
+	y = yql.Public()
+	results = y.execute(query).raw
+	try:
+		category = results['results']['yctCategories']['yctCategory']
+		if type(category) == list:
+			category = category[0]['content']
+		else:
+			category = category['content']
+	except:
+		category = ''
+
+	return category
 
 class FeedServer:
-	client = MongoClient('localhost', 27017)
+	client = MongoClient('10.101.158.66', 27017)
 	db = client.MINOR
 	db_feeds = db.Feeds
 	db_articles = db.Articles
@@ -61,6 +78,7 @@ class FeedServer:
 		update_count = 0
 		for article in feed['articles']:
 			if self.db_articles.find_one({'feed': id, 'link': article['link'], 'date': article['date']}) is None:
+				category = find_category(article['content'])
 				self.db_articles.insert({
 					'feed': id,
 					'title': article['title'],
@@ -70,6 +88,7 @@ class FeedServer:
 					'date': article['date'],
 					'readed': 0,
 					'stared': 0,
+					'category': category,
 				})
 				update_count = update_count + 1
 		feed['update_count'] = update_count
@@ -78,5 +97,6 @@ class FeedServer:
 	def update(self):
 		feeds = self.db_feeds.find(fields=['url'])
 		for feed in feeds:
+			print 'Updating %s' % feed['url']
 			update_count = self._update(feed['_id'], feed['url'])['update_count']
 			print '%4d updated in %s' % (update_count, feed['url'])
