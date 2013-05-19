@@ -31,6 +31,7 @@ def parse(url):
 			'content': entry.text,
 			'author': entry.author.screen_name,
 			'link': '%s/status/%d' % (url, entry.id),
+			'photo': '',
 			'date': entry.created_at
 		}
 		feed['articles'].append(article)

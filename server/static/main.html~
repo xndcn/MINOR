@@ -1,0 +1,115 @@
+$def with (username)
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>
+			$username's reader
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<link type="text/css" rel="stylesheet" href="/static/css/base.css" />
+		<link type="text/css" rel="stylesheet" href="/static/css/common.css" />
+		<link type="text/css" rel="stylesheet" href="/static/css/minor.css" />
+		<!-- Le styles -->
+		<link href="/static/bootstrap/css/bootstrap.css" rel="stylesheet">
+		<style type="text/css">
+			body { padding-top: 30px; padding-bottom: 40px; } .sidebar-nav { padding:
+			9px 0; } .reader_img { margin-bottom:10px; } .inputPopup{ margin-bottom:10px;
+			} .addForm{ min-width:300px; margin-bottom: 0px; } .addForm_input{ max-width:250px;
+			margin-top:10px; }
+		</style>
+		<link type="text/css" rel="stylesheet" href="/static/bootstrap/css/bootstrap.css"
+		/>
+		<link type="text/css" rel="stylesheet" href="/static/bootstrap/css/bootstrap-responsive.css"
+		/>
+	</head>
+	<body>
+		<script src="/static/bootstrap/js/jquery.js">
+		</script>
+		<script src="/static/bootstrap/js/bootstrap-transition.js">
+		</script>
+		<script src="/static/bootstrap/js/bootstrap-alert.js">
+		</script>
+		<script src="/static/bootstrap/js/bootstrap-modal.js">
+		</script>
+		<script src="/static/bootstrap/js/bootstrap-dropdown.js">
+		</script>
+		<script src="/static/bootstrap/js/bootstrap-scrollspy.js">
+		</script>
+		<script src="/static/bootstrap/js/bootstrap-tab.js">
+		</script>
+		<script src="/static/bootstrap/js/bootstrap-tooltip.js">
+		</script>
+		<script src="/static/bootstrap/js/bootstrap-popover.js">
+		</script>
+		<script src="/static/bootstrap/js/bootstrap-button.js">
+		</script>
+		<script src="/static/bootstrap/js/bootstrap-collapse.js">
+		</script>
+		<script src="/static/bootstrap/js/bootstrap-carousel.js">
+		</script>
+		<script src="/static/bootstrap/js/bootstrap-typeahead.js">
+		</script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
+		</script>
+		<script type="text/javascript" src="/static/userfeeds.js">
+		</script>
+		<script>
+			var username = "$username";
+			getUserFeeds();
+		</script>
+		<script type="text/javascript" src="/static/js/minor.js">
+		</script>		
+		</div>
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="span3">
+					<div class="reader_img">
+						<img src="/static/images/logo_V3.png" />
+					</div>
+					<div class="btn-group inputPopup">
+						<a href="#" class="btn dropdown-toggle btn-primary btn-small" data-toggle="collapse"
+						data-target="#subscribe">
+							Subscribe
+						</a>
+						<div id="subscribe" class="collapse">
+							<input id="feedurl" type="text" class="input-block-level addForm_input"
+							placeholder="Add your webwsite here" name="website">
+							</br>
+							<button id="addfeed" class="btn btn-primary" type="submit">
+								Add
+							</button>
+						</div>
+					</div>
+					<div class="well sidebar-nav">
+						<ul class="nav nav-list">
+							<li id="mygroup" class='nav-header' data-toggle="collapse" data-target="#feed-list">我的订阅</li>
+							<div id="feed-list" class="in collapse">
+							</div>
+						</ul>
+					</div>
+					<div id="recommend">
+						<div class="event up">
+							<a id="recommend_a" class="content up leftright" target="_self" href="#">
+								<span class="image"></span>
+								<span class="title"></span>
+							</a>
+						</div>					
+					</div>
+					<!--/.well -->
+				</div>
+				<!--/span-->
+				<div class="span9" style="position:relative;">
+					<div id="all" class="all" style="height: 522px; border:1px solid #e3e3e3;border-radius:4px; background-color: rgb(250, 250, 250);overflow:hidden;">
+						<div id="timeline" class="timeline">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="/static/timeline.js"></script>
+		<script type="text/javascript"></script>
+	</body>
+
+</html>

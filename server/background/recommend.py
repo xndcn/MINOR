@@ -20,7 +20,7 @@ class Recommend(object):
 
 		# user_rate[user][feed] = a value of rate
 		self.user_feed_rate = {}
-		self.init_rate()
+		#self.init_rate()
 
 		self.db_recommends = db.Recommends
 		for user in self.db_users.find():

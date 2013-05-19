@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Minor Reader</title>
+
+<link type="text/css" rel="stylesheet" href="css/base.css" />
+<link type="text/css" rel="stylesheet" href="css/common.css" />
+<link type="text/css" rel="stylesheet" href="css/minor.css" />
+
+<style type="text/css">
+
+</style>
+</head>
+
+<body>
+<div id="all" class="all">
+    <div id="timeline" class="timeline">
+        <div id="line" class="line"></div>
+        
+        <!--
+        <div class="event up" style="left:250px;">
+        	<a class="event" data-eventid="2696" id="event_56" href="#"></a>
+            <span class="vLine"></span>
+            <a class="content direction_up" href="http://www.baidu.com" style="display: none;">
+            	<span class="image" style="background-image: url('http://sidigital.co/admin/../public/img/blog/2012/12/122-150x150.jpeg')"></span>
+                <span class="title">Team day of steak, pool and bowling</span>
+            </a>
+        </div>
+        -->
+        
+    </div>
+    
+</div>
+
+
+
+
+
+<script type="text/javascript" src="js/jquery-1.7.min.js"></script>
+<script type="text/javascript" src="js/minor.js"></script>
+<script type="text/javascript">
+
+(function(){
+	
+	var sampleData = [
+	{
+		"layout":"leftright",
+		"direction":"up",
+		"time":"2011,1,18,17,51,46",
+		"text":"这张卡片的说明文字这张卡片的说明文字这张卡片的说明文字说明文字这张卡片的说明文字这张卡片的说明文字这张卡片的说明文字这张卡片的说明文字",
+		"imageUrl":"http://sidigital.co/admin/../public/img/blog/2012/12/122-150x150.jpeg",
+		"targetUrl": "http://www.baidu.com",
+		"iconUrl":"images/eventIcon.png",
+		"headline":"这张卡片的标题"
+	},
+	{
+		"layout":"onlyimage",
+		"direction":"down",
+		"time":"2012,1,18,15,59,46",
+		"text":"这张卡片的说明文字这张卡片的说明文字这张卡片的说明文字说明文字这张卡片的说明文字这张卡片的说明文字这张卡片的说明文字这张卡片的说明文字",
+		"imageUrl":"http://sidigital.co/admin/../public/img/blog/2012/12/122-150x150.jpeg",
+		"targetUrl": "http://www.baidu.com",
+		"iconUrl":"images/eventIcon.png",
+		"headline":"这张卡片的标题"
+	},
+	{
+		"layout":"onlytext",
+		"direction":"up",
+		"time":"2012,1,18,17,38,46",
+		"text":"这张卡片的说明文字这张卡片的说明文字这张卡片的说明文字说明文字这张卡片的说明文字这张卡片的说明文字这张卡片的说明文字这张卡片的说明文字",
+		"imageUrl":"http://sidigital.co/admin/../public/img/blog/2012/12/122-150x150.jpeg",
+		"targetUrl": "http://www.baidu.com",
+		"iconUrl":"images/eventIcon.png",
+		"headline":"这张卡片的标题"
+	},
+	{
+		"layout":"updown",
+		"direction":"down",
+		"time":"2012,1,18,17,51,46",
+		"text":"这张卡片的说明文字这张卡片的说明文字这张卡片的说明文字说明文字这张卡片的说明文字这张卡片的说明文字这张卡片的说明文字这张卡片的说明文字",
+		"imageUrl":"http://sidigital.co/admin/../public/img/blog/2012/12/122-150x150.jpeg",
+		"targetUrl": "http://www.baidu.com",
+		"iconUrl":"images/eventIcon.png",
+		"headline":"这张卡片的标题"
+	},
+	{
+		"layout":"updown",
+		"direction":"up",
+		"time":"2012,1,18,17,53,46",
+		"text":"这张卡片的说明文字这张卡片的说明文字这张卡片的说明文字说明文字这张卡片的说明文字这张卡片的说明文字这张卡片的说明文字这张卡片的说明文字",
+		"imageUrl":"http://sidigital.co/admin/../public/img/blog/2012/12/122-150x150.jpeg",
+		"targetUrl": "http://www.baidu.com",
+		"iconUrl":"images/eventIcon.png",
+		"headline":"这张卡片的标题"
+	},
+	{
+		"layout":"updown",
+		"direction":"down",
+		"time":"2012,1,18,17,57,46",
+		"text":"这张卡片的说明文字这张卡片的说明文字这张卡片的说明文字说明文字这张卡片的说明文字这张卡片的说明文字这张卡片的说明文字这张卡片的说明文字",
+		"imageUrl":"http://sidigital.co/admin/../public/img/blog/2012/12/122-150x150.jpeg",
+		"targetUrl": "http://www.baidu.com",
+		"iconUrl":"images/eventIcon.png",
+		"headline":"这张卡片的标题"
+	},
+	{
+		"layout":"leftright",
+		"direction":"up",
+		"time":"2012,2,18,18,06,46",
+		"text":"这张卡片的说明文字这张卡片的说明文字这张卡片的说明文字说明文字这张卡片的说明文字这张卡片的说明文字这张卡片的说明文字这张卡片的说明文字",
+		"imageUrl":"http://sidigital.co/admin/../public/img/blog/2012/12/122-150x150.jpeg",
+		"targetUrl": "http://www.baidu.com",
+		"iconUrl":"images/eventIcon.png",
+		"headline":"这张卡片的标题"
+	},
+	];
+	
+	
+	var timeLine = document.getElementById("timeline");
+	
+	var timeStampArr = [];
+	for(var i=0,len=sampleData.length; i<len; i++){
+		var eventItem = createLineItem(sampleData[i]);
+		timeLine.appendChild(eventItem);
+		
+		if(i==0){
+			$(eventItem).css("left","200px");
+			timeLine.appendChild(eventItem);
+			continue;			
+		}
+		
+		var thisTime = sampleData[i]["time"].split(",");
+		var thisDate = new Date(Date.UTC(thisTime[0],thisTime[1]-1,thisTime[2],thisTime[3],thisTime[4],thisTime[5]));
+		
+		var thatTime = sampleData[i-1]["time"].split(",");
+		var thatDate = new Date(Date.UTC(thatTime[0],thatTime[1]-1,thatTime[2],thatTime[3],thatTime[4],thatTime[5]));
+		
+		var diffTime  = thisDate - thatDate;
+		var timeStamp = false;
+		
+		var diffMinite = diffTime/(1000*60);
+		if(diffMinite > 180){
+			diffMinite = 180;
+			timeStamp  = true;
+		}else if(diffMinite <5){
+			diffMinite = 5;
+		}
+		
+		var preNode = $(eventItem).prev(".event");
+				
+		var leftNum = (Number(preNode.css("left").slice(0,-2)) + diffMinite + 32) + "px";
+		//var leftNum = (Number($(eventItem).prev(".event").css("left").slice(0,-2)) + diffMinite + 32) + "px";
+		$(eventItem).css("left",leftNum);
+		var temp = $("#line").width() + diffMinite;
+		document.getElementById("line").style.width = temp + "px";
+		
+		if(i==len-1){
+			document.getElementById("line").style.width = (Number(document.getElementById("line").style.width.slice(0,-2))+150+32*len) + "px";
+		}
+		
+		if(timeStamp){
+			var div = document.createElement("div");
+				$(div).addClass("month");
+				$(div).html(thisTime[2] + "日" + "<span>" + thisTime[3] + ":" + thisTime[4] + "</span>");
+			//$("#timeline").append(div);
+			
+			var posi = Number(leftNum.slice(0,-2)) - 90 - 32;
+			div.style.left = posi + "px";
+			timeStampArr.push(div);
+			
+			timeStamp = false;
+		}
+	}
+	for(var i=0,len=timeStampArr.length; i<len; i++){
+		$("#timeline").append(timeStampArr[i]);
+	}
+	
+	
+	
+	/*
+	setInterval(function(){
+		console.log($("#timeline").scrollLeft());
+	},3000);
+	*/
+	
+	
+	
+})();
+
+(function(){
+	$("#timeline").bind("mousedown",dragX);
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+})();
+
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+

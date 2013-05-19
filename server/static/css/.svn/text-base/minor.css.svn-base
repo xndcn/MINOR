@@ -1,0 +1,130 @@
+@charset "utf-8";
+
+body{
+	overflow-x:hidden;
+}
+#timeline{
+	position:absolute;
+	height:520px;
+	width:100%;
+	border:1px solid #aaa;
+	overflow:hidden;
+	margin-right:20px;
+	cursor:url("../images/hand.png"), w-resize;
+}
+.draging{
+	cursor:url("../images/drag.png"), w-resize !important;
+}
+#timeline .line{
+	background: none repeat scroll 0 0 padding-box #B3AEB1;
+    border-radius: 5px;
+    border-top: 1px solid #8F8B8E;
+    height: 8px;
+    margin-top: -10px;
+    min-width: 100%;
+	width:300%;
+    position: absolute;
+	left:10px;
+    top: 50%;
+    z-index: 5;
+	
+}
+#timeline a.event{
+	background:url("../images/eventIcon.png") no-repeat scroll 0 0 transparent;
+    display: block;
+    position: absolute;
+    height: 32px;
+    width: 32px;
+    right: 0;
+    top: 0;
+    z-index: 6;
+}
+#timeline div.event{
+    display: block;
+    height: 32px;
+    min-width: 32px;
+    overflow: visible;
+    position: absolute;
+    z-index: 6;
+}
+#timeline div.up{
+	bottom: 251px;
+}
+#timeline div.down{
+	top:247px;
+}
+#timeline div.down .vLine{
+	top:4px;
+}
+#timeline .down a.event{
+	bottom:10px;
+}
+#timeline .down a.content{
+	bottom:24px;
+}
+#timeline .vLine{
+	background: none repeat scroll 0 0 #B3AEB1;
+    display: block;
+    height: 8px;
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    width: 5px;
+}
+#timeline .content{
+	background: none repeat scroll 0 0 padding-box #FFFFFF;
+    border: 1px solid #B3AEB1;
+    border-radius: 5px;
+    color: #493E45;
+    display: none;
+	padding: 10px;
+    position: absolute;
+	z-index: 5;
+}
+
+/*layout分类样式*/
+#timeline .leftright{
+    margin-left: -99px;
+    width: 215px;
+}
+#timeline .updown, #timeline .onlyimage, #timeline .onlytext{
+    margin-left: -44px;
+}
+#timeline .updown .image{
+	margin-bottom:10px;
+}
+#timeline .leftright span.title{
+	max-height:100px;
+}
+#timeline .updown span.title{
+	max-height:60px;
+}
+#timeline .onlytext span.title{
+	max-height:170px;
+}
+/*layout分类样式结束*/
+/*direction分类样式*/
+#timeline .up a.content{
+	top:18px;
+}
+#timeline .down a.event{
+	top:auto;
+}
+/*direction分类样式结束*/
+
+#timeline .content .image{
+	background-position: center center;
+    background-repeat: no-repeat;
+    background-size: auto 130px;
+    float: left;
+    height: 100px;
+    width: 100px;
+}
+#timeline .content .title{
+	display: block;
+    float: right;
+    padding: 0;
+	font-size:12px;
+    width: 100px;
+	overflow:hidden;
+}

@@ -27,6 +27,7 @@ def parse(url):
 			'content': entry.description,
 			'author': user.username,
 			'link': entry.getPageUrl(),
+			'photo': entry.getSizes()['Small']['source'],
 			'date': datetime.datetime.fromtimestamp(entry.posted)
 		}
 		feed['articles'].append(article)
