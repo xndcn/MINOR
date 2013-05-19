@@ -116,7 +116,9 @@ function slideItem(evt){
 		
 		
 	}).error(function() {
-		
+		$("#recommend_a span:eq(0)").css("background-image","");
+		$("#recommend_a span:eq(1)").text("");
+		$("#recommend_a").attr("href", "#");
 	});
 	
 	var direction = "";
